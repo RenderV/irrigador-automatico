@@ -23,8 +23,8 @@ def dic_getidx(dic, idx):
     return {key: dic[key]}
 
 
-def out_format(dic, type):
-    if type:
+def out_format(dic, is_split):
+    if is_split:
         return {'labels': list(dic.keys()), 'values': list(dic.values())}
     return {'data': dic}
 
@@ -48,7 +48,7 @@ def update_humidity(info: float):
     return Response(status_code=200)
 
 @app.get('/get_humidity')
-def get_humidity(separated: bool = False,
+def get_humidity(is_split: bool = False,
                 date: Optional[str] =  None,
                 index: Optional[int] = None,
                 all: bool = False):
@@ -60,12 +60,12 @@ def get_humidity(separated: bool = False,
             else:
                 data = {}
     if index is not None:
-        return out_format(dic_getidx(data, index), separated)
+        return out_format(dic_getidx(data, index), is_split)
     elif date is not None:
         rvalue = data.get(date, None)
-        return out_format({date: rvalue}, separated)
+        return out_format({date: rvalue}, is_split)
     elif all:
-        return out_format(data, separated)
+        return out_format(data, is_split)
     else:
         raise HTTPException(status_code=422, detail='Either [index], [date] or [all] should be defined.')
 
