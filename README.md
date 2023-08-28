@@ -14,6 +14,21 @@ COM BLYNK:
 O algoritmo analisa os valores do sensor de umidade e converte em porcentagem. Para isso, foi realizada uma calibração do sensor, baseado nos valores mínimos e máximos dos sensores quando colocado em ambientes secos e submersos na água. 
 A bomba pode ser acionada manualmente ou de forma automática. No modo automático, caso a umidade esteja abaixo de um valor pré-definido, a irrigação é realizada. Depois, para evitar a ativação contínua da bomba em caso de problemas no sensor, é estabelecido um intervalo de tempo pelo qual a bomba não pode ser reativada. O ESP32 envia periodicamente as informações do sensor para o servidor por meio de uma REST API, permitindo sua monitoração constante. Além disso, o dispositivo verifica regularmente se há novos comandos a serem recebidos (polling).
 
+#### Dependências
+
+Com python:
+- Micropython
+- FastAPI (para o servidor)
+
+Foi utilizado vscode com a extensão Pymakr.
+
+Com o C++:
+- Blynk
+- Bibliotecas referentes ao esp32;
+- Bibliotecas do Blynk para o esp32 `BlynkSimpleEsp32`
+
+Foi utilizado Arduíno IDE.
+
 #### Materiais Utilizados
 
 - ESP32
